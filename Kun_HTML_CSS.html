@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Digifab Boat</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        body {
+            font-family: 'Arial', Courier;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .button {
+            padding: 15px 25px;
+            font-size: 20px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .button:active {
+            background-color: #3e8e41;
+        }
+
+        .red {
+            background-color: #f44336;
+        }
+
+        .red:hover {
+            background-color: #e53935;
+        }
+
+        .red:active {
+            background-color: #d32f2f;
+        }
+
+        #icon-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            font-family: "Pacifico", cursive;
+          font-weight: 400;
+          font-style: normal;
+        }
+
+        #icon-header img {
+            height: 8rem;
+        }
+
+        #icon-header h1 {
+            font-size: 5rem;
+        }
+
+        .flipped-img {
+            transform: scaleX(-1);
+        }
+
+        #test-buttons {
+            margin-top: 100rem;
+        }
+
+        #gopro-box {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        #livestream {
+            width: 45%;
+            height: 25rem;
+            background-color: #cfebf7;
+        }
+
+        h3 {
+            margin: 0;
+            margin-bottom: 1rem
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        #joystick {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        #bottom-row {
+            display: flex;
+            justify-content: center;
+            gap: 9rem;
+        }
+
+        .control-button {
+            width: 8rem;
+            height: 8rem;
+            font-weight: 700;
+            background-color: #cfebf7;
+            font-size: 1rem;
+        }
+
+        .control-button:hover {
+            background-color: #bddfee;
+        }
+
+        .control-button:active {
+            background-color: #eebdbd;
+        }
+        
+        .active {
+            background-color: #dfed81 !important;
+        }
+
+    </style>
+    <script>
+        function sendRequest(url) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+        
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'ArrowLeft') {
+                sendRequest('/right_motor/on');
+                document.getElementById('left-button').classList.add('active');
+            } else if (event.code === 'ArrowUp') {
+                sendRequest('/both_motors/on');
+                document.getElementById('forward-button').classList.add('active');
+            } else if (event.code === 'ArrowRight') {
+                sendRequest('/left_motor/on');
+                document.getElementById('right-button').classList.add('active');
+            }
+        });
+
+        document.addEventListener('keyup', function(event) {
+            if (event.code === 'ArrowLeft') {
+                sendRequest('/right_motor/off');
+                document.getElementById('left-button').classList.remove('active');
+            } else if (event.code === 'ArrowUp') {
+                sendRequest('/both_motors/off');
+                document.getElementById('forward-button').classList.remove('active');
+            } else if (event.code === 'ArrowRight') {
+                sendRequest('/left_motor/off');
+                document.getElementById('right-button').classList.remove('active');
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id="icon-header">
+        <img src="https://i.imgur.com/9gJnMUw.png" />
+        <h1>Digifab Boat</h1>
+        <img src="https://i.imgur.com/9gJnMUw.png" class="flipped-img" />
+    </div>
+
+    <!--
+    <h3>GoPro</h3>
+    <div id="gopro-box">
+        <div id="livestream">
+            <h3>Livestream...</h3>
+        </div>
+    </div>
+    -->
+
+    <div id="joystick">
+        <div id="top-row">
+            <button id="forward-button" class="control-button" onmousedown="sendRequest('/both_motors/on')" onmouseup="sendRequest('/both_motors/off')">Forward</button>
+        </div>
+        <div id="bottom-row">
+            <button id="left-button" class="control-button" onmousedown="sendRequest('/right_motor/on')" onmouseup="sendRequest('/right_motor/off')">Left</button>
+            <button id="right-button" class="control-button" onmousedown="sendRequest('/left_motor/on')" onmouseup="sendRequest('/left_motor/off')">Right</button>
+        </div>
+    </div>
+
+    <div id="test-buttons">
+        <button class="button" onclick="sendRequest('/left_motor/on')">Turn right On</button>
+        <button class="button red" onclick="sendRequest('/left_motor/off')">Turn right Off</button>
+        <button class="button" onclick="sendRequest('/right_motor/on')">Turn left On</button>
+        <button class="button red" onclick="sendRequest('/right_motor/off')">Turn left Off</button>
+        <button class="button" onclick="sendRequest('/both_motors/on')">Turn both On</button>
+        <button class="button red" onclick="sendRequest('/both_motors/off')">Turn both Off</button>
+        <br><br>
+        <button class="button" onmousedown="sendRequest('/left_motor/on')" onmouseup="sendRequest('/left_motor/off')">Hold to Turn
+            right On</button>
+        <button class="button" onmousedown="sendRequest('/right_motor/on')" onmouseup="sendRequest('/right_motor/off')">Hold to Turn
+            left On</button>
+        <button class="button" onmousedown="sendRequest('/both_motors/on')" onmouseup="sendRequest('/both_motors/off')">Hold to Turn
+            both On</button>
+    </div>
+</body>
+
+</html>
