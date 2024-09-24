@@ -17,6 +17,6 @@ Du finner en mer detaljert forklaring av prosjektet, inkludert kode, bilder og v
 
 Se en video av prosjektet her: [Video Lenke](https://drive.google.com/file/d/1GtjeYGmyRBAU2ewxSL2yTOxBwW00bKp3/view)
 
-For å se prosjektet i sin helhet, besøk gjerne Notion-siden hvor alle detaljer, filer, og ressurser er samlet: [Notion Prosjektside](Notion-side](https://showy-gatsby-01f.notion.site/Fjernstyrt-Styrt-B-t-Med-GoPro-Kamera-af60dbc0570942ddabbc8bce5ed9c681?pvs=4)).
+For å se prosjektet i sin helhet, besøk gjerne Notion-siden hvor alle detaljer, filer, og ressurser er samlet: [Notion Prosjektside](https://showy-gatsby-01f.notion.site/Fjernstyrt-Styrt-B-t-Med-GoPro-Kamera-af60dbc0570942ddabbc8bce5ed9c681?pvs=4).
 
 
